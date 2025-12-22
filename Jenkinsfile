@@ -26,7 +26,7 @@ pipeline {
             steps {
                 // Le nom 'SonarQube' doit être celui configuré dans 'System'
                 withSonarQubeEnv('SonarQube') {
-                    sh 'mvn sonar:sonar'
+                    sh 'mvn org.sonarsource.scanner.maven:sonar-maven-plugin:3.9.1.2184:sonar'
                 }
             }
         }
