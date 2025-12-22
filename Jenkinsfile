@@ -1,23 +1,34 @@
+
 pipeline {
     agent any
-    
+
     tools {
+        // Doit correspondre au nom configuré dans 'Administrer Jenkins' > 'Tools'
         maven 'Maven' 
-        jdk 'JDK 17'
     }
 
     stages {
         stage('Checkout') {
             steps {
-                checkout scm 
+                // Télécharge le code depuis GitHub
+                checkout scm
             }
         }
-        
-       stage('Build & Unit Tests') {
+
+        stage('Build & Unit Tests') {
             steps {
-        // Le flag -DskipTests permet de vérifier que la compilation seule fonctionne
-        sh 'mvn clean package -DskipTests=true'
+                // Compile le projet et saute les tests pour gagner du temps
+                sh 'mvn clean package -DskipTests'
+            }
         }
-}
+
+        stage('SonarQube Analysis') {
+            steps {
+                // Le nom 'SonarQube' doit être celui configuré dans 'System'
+                withSonarQubeEnv('SonarQube') {
+                    sh 'mvn sonar:sonar'
+                }
+            }
+        }
     }
 }
