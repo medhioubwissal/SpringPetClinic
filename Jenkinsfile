@@ -13,11 +13,11 @@ pipeline {
             }
         }
         
-        stage('Build & Unit Tests') {
+       stage('Build & Unit Tests') {
             steps {
-                //--- On utilise -DskipTests pour le premier build rapide---
-                sh 'mvn clean package -DskipTests=true'
-            }
+        // Le flag -DskipTests permet de vérifier que la compilation seule fonctionne
+        sh 'mvn clean package -DskipTests=true'
         }
+}
     }
 }
