@@ -30,5 +30,22 @@ pipeline {
                 }
             }
         }
+
+
+        stage('Tests Selenium') {
+            steps {
+                script {
+                    // Lancer l'app en arrière-plan pour que Selenium puisse y accéder
+                    sh 'mvn spring-boot:start' 
+                    try {
+                        // Exécuter les tests TestNG
+                        sh 'mvn test -Dtest=SeleniumUITests'
+                    } finally {
+                        // Toujours arrêter l'app, même si les tests échouent
+                        sh 'mvn spring-boot:stop'
+                    }
+                }
+            }
+        }
     }
 }
