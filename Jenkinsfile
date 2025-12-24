@@ -46,5 +46,25 @@ pipeline {
                 }
             }
         }
+
+
+        stage('Docker Build') {
+            steps {
+                // Remplacez 'votre-login' par votre nom d'utilisateur Docker Hub
+                sh 'docker build -t votre-login/spring-petclinic:latest .'
+            }
+        }
+
+        stage('Docker Push') {
+            steps {
+                script {
+                    // 'docker-hub-creds' est l'ID des identifiants créés dans Jenkins
+                    withCredentials([usernamePassword(credentialsId: 'docker-hub-creds', passwordVariable: 'PASS', usernameVariable: 'USER')]) {
+                        sh "docker login -u ${USER} -p ${PASS}"
+                        sh "docker push ${USER}/spring-petclinic:latest"
+                    }
+                }
+            }
+        }
     }
 }
