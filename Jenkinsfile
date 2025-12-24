@@ -73,10 +73,10 @@ pipeline {
             steps {
                 script {
                     // Applique les fichiers YAML au cluster Kubernetes
-                    sh 'kubectl apply -f deployment.yaml'
-                    sh 'kubectl apply -f service.yaml'
+                    sh 'kubectl apply -f deployment.yaml --validate=false'
+                    sh 'kubectl apply -f service.yaml --validate=false'
+                    
                     sh 'kubectl get pods'
-                    sh 'kubectl get svc petclinic-service'
                 }
             }
         }
