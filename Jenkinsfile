@@ -41,7 +41,7 @@ pipeline {
                         // Exécuter les tests TestNG
                         sh 'mvn test -Dtest=SeleniumUITests'
                     } finally {
-                        // Toujours arrêter l'app, même si les tests échouent
+                        // --Toujours arrêter l'app, même si les tests échouent
                         sh 'mvn spring-boot:stop'
                     }
                 }
