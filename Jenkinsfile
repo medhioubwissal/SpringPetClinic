@@ -51,7 +51,7 @@ pipeline {
         stage('Docker Build') {
             steps {
                 // Remplacez 'votre-login' par votre nom d'utilisateur Docker Hub
-                sh 'docker build -t votre-login/spring-petclinic:latest .'
+                sh 'docker build -t wissal/spring-petclinic:latest .'
             }
         }
 
