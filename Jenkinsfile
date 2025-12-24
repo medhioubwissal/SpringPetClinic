@@ -75,6 +75,8 @@ pipeline {
                     // Applique les fichiers YAML au cluster Kubernetes
                     sh 'kubectl apply -f deployment.yaml'
                     sh 'kubectl apply -f service.yaml'
+                    sh 'kubectl get pods'
+                    sh 'kubectl get svc petclinic-service'
                 }
             }
         }
