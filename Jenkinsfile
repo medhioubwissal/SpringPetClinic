@@ -34,15 +34,19 @@ pipeline {
 
         stage('Tests Selenium') {
             steps {
-                script {
-                    // Lancer l'app en arrière-plan pour que Selenium puisse y accéder
-                    sh 'mvn spring-boot:start' 
+               script {
+                    // 1. Lancer l'app en arrière-plan avec redirection des logs
+                    sh 'nohup mvn spring-boot:run > app_log.txt 2>&1 &'
+                    
+                    // 2. Attendre que l'app soit prête sur le port 8080 (crucial pour Selenium)
+                    sh 'sleep 30' 
+                    
                     try {
-                        // --Exécuter les tests TestNG
+                        // 3. Exécuter les 5 tests UI demandés 
                         sh 'mvn test -Dtest=SeleniumUITests'
                     } finally {
-                        // --Toujours arrêter l'app, même si les tests échouent--
-                        sh 'mvn spring-boot:stop'
+                        // 4. Arrêter l'app proprement par son port au lieu du JMX
+                        sh 'fuser -k 8080/tcp || true'
                     }
                 }
             }
