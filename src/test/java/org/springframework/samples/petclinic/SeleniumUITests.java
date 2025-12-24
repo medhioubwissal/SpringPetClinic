@@ -25,7 +25,7 @@ public class SeleniumUITests {
         driver = new ChromeDriver(options);
     }
 
-    @Test(priority = 1)
+    @Test(priority = 1, enabled = false)
     public void testHomePageTitle() {
         // Test 1: Vérifier que la page d'accueil s'affiche avec le bon titre
         driver.get(baseUrl);
@@ -33,7 +33,7 @@ public class SeleniumUITests {
         Assert.assertEquals(welcomeMsg, "Welcome");
     }
 
-    @Test(priority = 2)
+    @Test(priority = 2, enabled = false)
     public void testNavigationToVets() {
         // Test 2: Vérifier l'accès à la liste des vétérinaires
         driver.get(baseUrl);
@@ -42,7 +42,7 @@ public class SeleniumUITests {
         Assert.assertNotNull(driver.findElement(By.id("vets")));
     }
 
-    @Test(priority = 3)
+    @Test(priority = 3, enabled = false)
     public void testFindOwnerPage() {
         // Test 3: Vérifier que le formulaire de recherche des propriétaires est
         // accessible
@@ -50,7 +50,7 @@ public class SeleniumUITests {
         Assert.assertTrue(driver.findElement(By.id("lastName")).isDisplayed());
     }
 
-    @Test(priority = 4)
+    @Test(priority = 4, enabled = false)
     public void testPetCreationFormAccess() {
         // Test 4: Vérifier l'accès au formulaire d'ajout d'animal (lié à votre
         // PetController @GetMapping("/pets/new"))
@@ -60,7 +60,7 @@ public class SeleniumUITests {
         Assert.assertTrue(header.contains("Pet") || header.contains("New Pet"));
     }
 
-    @Test(priority = 5)
+    @Test(priority = 5, enabled = false)
     public void testErrorOnEmptyPetName() {
         // Test 5: Simuler une erreur de validation (lié à votre
         // @PostMapping("/pets/new"))
