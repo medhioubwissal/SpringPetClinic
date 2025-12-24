@@ -7,6 +7,8 @@ spec:
   selector:
     app: petclinic
   ports:
-    - port: 8080
-      targetPort: 8080
+    - protocol: TCP
+      port: 8085
+      targetPort: 8085
+      # Le port NodePort demandé pour l'accès externe
       nodePort: 30080

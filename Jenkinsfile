@@ -67,5 +67,16 @@ pipeline {
                 }
             }
         }
+
+
+        stage('K8s Deployment') {
+            steps {
+                script {
+                    // Applique les fichiers YAML au cluster Kubernetes
+                    sh 'kubectl apply -f deployment.yaml'
+                    sh 'kubectl apply -f service.yaml'
+                }
+            }
+        }
     }
 }
