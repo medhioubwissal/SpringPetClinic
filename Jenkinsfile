@@ -72,7 +72,7 @@ pipeline {
         stage('K8s Deployment') {
             steps {
                 script {
-                    // Applique les fichiers YAML au cluster Kubernetes
+                    // --Applique les fichiers YAML au cluster Kubernetes
                     sh 'kubectl apply -f deployment.yaml --validate=false'
                     sh 'kubectl apply -f service.yaml --validate=false'
                     
