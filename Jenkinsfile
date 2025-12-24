@@ -46,7 +46,7 @@ pipeline {
                         sh 'mvn test -Dtest=SeleniumUITests'
                     } finally {
                         // 4. Arrêter l'app proprement par son port au lieu du JMX
-                        sh 'fuser -k 8080/tcp || true'
+                        sh sh 'fuser -k 8085/tcp || true'
                     }
                 }
             }
