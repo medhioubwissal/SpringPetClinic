@@ -30,7 +30,7 @@ pipeline {
         stage('Tests Selenium') {
          steps {
                script {
-                    // 1. Lancer l'app sur le port 8085
+                    // 1. --Lancer l'app sur le port 8085
                     sh 'nohup mvn spring-boot:run -Dspring-boot.run.arguments=--server.port=8085 > app_log.txt 2>&1 &'
                     
                     // 2. Attendre que l'app soit prête
